@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JACODA - JAvascript COmpact DAta</title>
+	<style type="text/css">
+            #jacoda, #json {
+		    background-color: #ffffee;
+		    border: .4em solid #eeeedd;
+                    height: 10em;
+		    width: 30em;
+	    }
+	    label {
+                display: block;
+	    }
+	    table {
+                border: .25em solid #eeeedd;
+		margin: 1em;
+	    }
+	    th, td {
+		margin: .25em
+	    }
+	    p {
+		    width: 40em;
+	    }
+	</style>
+    </head>
+    <body>
+        <h1>JACODA - JAvascript COmpact DAta</h1>
+        <p>Do you really need JSON? Sometimes you do: you have complex objects with levels of nesting. Or maybe you have sparse data and JSON is an efficient way to represent it. But sometimes you have a flat data table. A simple spreadsheet. A CSV, if you will. JSON will represent your data, but it will include the field labels for every single record, over and over and over.</p>
+
+        <p>JACODA is an answer to that. Maybe not a good answer. A way to represent a flat table in a Javascript-ready format.</p>
+
+	<h2>JACODA data</h2>
+	<form name="jacoda_form" onsubmit="el=document.getElementById('jacoda_data'); updateJacoda(eval(el.value)); return false;">
+		<textarea rows="6" cols="60" disabled id="jacoda_data">
+[
+	["letter","number","color"],
+	["alpha","one","red"],
+	["beta","two","green"],
+	["gamma","three","blue"]
+];
+		</textarea>
+		<label><input type="submit" value="render JACODA"></label>
+	</form>
+        <h2>JACODA data, rendered</h2>
+        <div id="jacoda"></div>
+
+	<h2>JSON data</h2>
+	<form name="json_form" onsubmit="el=document.getElementById('json_data'); updateJson(eval(el.value)); return false;">
+		<textarea rows="6" cols="60" disabled id="json_data">
+[
+    {"letter":"alpha","number":"one","color":"red"},
+    {"letter":"beta","number":"two","color":"green"},
+    {"letter":"gamma","number":"three","color":"blue"}
+];
+		</textarea>
+		<label><input type="submit" value="render JSON"></label>
+	</form>
+        <h2>JSON data, rendered</h2>
+        <div id="json"></div>
+
+        <p>See? Exactly the same.</p>
+
+        <p>Now look at your brower's console. Easily converted to JSON if needed. Exactly the same.<p>
+
+        <h2>Benefits</h2>
+        <p>Reduced disk space, bandwidth, license usage. All things you pay for. Maybe other benefits too?</p>
+        <p>Even comparing my small contrived example, the JSON data, with unnecessary whitespace removed, is over twice the size of the JACODA data (header row excluded). That may not make a lot of difference for bandwidth (gzip compression) or disk space (various compression methods), but it will make a big difference for Splunk license usage, for one specific example.</p>
+
+        <h2>Are you serious?</h2>
+        <p>I'm honestly not sure.</p>
+	<p>Inspired by this conversation on Mastodon: <a href="https://infosec.exchange/@cherdt/113725355821786293">What if most JSON data is really just a CSV?</a></p>
+
+        <script src="jacoda.js"></script>
+	
+    </body>
+</html>
+
