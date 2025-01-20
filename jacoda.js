@@ -122,12 +122,11 @@ function renderingTest(iterations) {
 	updateJacoda(moviesJacoda);
 	stopTime = Date.now();
 	jacodaTotalTime += (stopTime - startTime);
+        getEl("jacoda_test_count").innerHTML = i + 1;
+        getEl("jacoda_total_time").innerHTML = jacodaTotalTime;
+        getEl("jacoda_mean_time").innerHTML = jacodaTotalTime/(i + 1);
     }
 
-    getEl("jacoda_test_count").innerHTML = iterations;
-    getEl("jacoda_total_time").innerHTML = jacodaTotalTime;
-    getEl("jacoda_mean_time").innerHTML = jacodaTotalTime/iterations;
-    
     // test JSON
     for (var i=0; i<iterations; i++) {
 	getEl("json").innerHTML = "";
@@ -135,10 +134,10 @@ function renderingTest(iterations) {
 	updateJson(moviesJson);
 	stopTime = Date.now();
 	jsonTotalTime += (stopTime - startTime);
+        getEl("json_test_count").innerHTML = i + 1;
+        getEl("json_total_time").innerHTML = jsonTotalTime;
+        getEl("json_mean_time").innerHTML = jsonTotalTime/(i + 1);
     }
-    getEl("json_test_count").innerHTML = iterations;
-    getEl("json_total_time").innerHTML = jsonTotalTime;
-    getEl("json_mean_time").innerHTML = jsonTotalTime/iterations;
 }
 
 if (document.getElementById("jacoda_data")) {
