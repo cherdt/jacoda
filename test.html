@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testing JACODA versus JSON - rendering speed</title>
+        <link rel="stylesheet" href="jacoda.css">
+    </head>
+    <body>
+        <h1>Testing JACODA versus JSON - rendering speed</h1>
+	<p><a href="index.html">JACODA</a> data is more compact than JSON data on disk (sample dataset is 1.24 MB versus 1.86 MB), but the advantages in terms of bytes transfered (sample dataset is 318.71 kB versus 340.55 kB) are greatly diminished thanks to the <a href="https://www.gnu.org/software/gzip/">gzip</a> compression capabilities leveraged by most web servers and web browsers. Are there any remaining advantages in the speed of processing and rendering the data?</a></p>
+
+        <p>The goal of this page is to let you test that and decide for yourself. It will iteratively generate an HTML data table, place it on the page, and destroy it, tracking the time it takes to process and render the table each time. Note that each iteration took approximately 220 ms in my browser, so be prepared to wait if you pick large iteration numbers.</p>
+	<p>Caveat:</p>
+	<ul>
+            <li>The timings are almost certainly affected by the quality of my JavaScript. However, I suspect my JavaScript for processing/rendering JACODA and for processing/rendering JSON are both only moderately terrible.</li>
+	</ul>
+
+	<form name="test" onsubmit="renderingTest(document.getElementById('iterations').value); return false;">
+	    <label for="iterations">Iterations: <input type="number" id="iterations" name="iterations" value="10"></label>
+	    <input type="submit" name="Start Test">
+	</form>
+
+	<table id="results">
+		<tr><th>Format</th><th>Tests</th><th>Total Time (ms)</th><th>Mean Time (ms)</th></tr>
+		<tr><th>JACODA</th><td id="jacoda_test_count"></td><td id="jacoda_total_time"></td><td id="jacoda_mean_time"></td></tr>
+		<tr><th>JSON</th><td id="json_test_count"></td><td id="json_total_time"></td><td id="json_mean_time"></td></tr>
+	</table>
+
+        <h2>JACODA</h2>
+	<div id="jacoda"></div>
+	
+	<h2>JSON</h2>
+	<div id="json"></div>
+
+	<p>The sample data set is a list of movie titles and their release years, scraped from Wikipedia, provided by <a href="https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json">https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json</a>, retrieved on 19 Jan 2025.</a> 
+
+	<script type="text/javascript" src="jacoda.js"></script>
+	<script type="text/javascript" src="movies.jacoda.js"></script>
+	<script type="text/javascript" src="movies.json.js"></script>
+    </body>
+</html>

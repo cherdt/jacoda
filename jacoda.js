@@ -1,6 +1,10 @@
 // Please forgive me
 // It's been many years since I've written much Javascript
 
+function getEl(id) {
+    return document.getElementById(id);
+}
+
 function createCell(rowIndex) {
     "use strict";
     if (rowIndex == 0) {
@@ -29,7 +33,7 @@ function updateJacoda(jacodaData) {
     var output = "";
     var table = document.createElement("table");
     jacodaData.forEach((row, i) => table.appendChild(buildRow(row, i)));
-    document.getElementById("jacoda").appendChild(table);
+    getEl("jacoda").appendChild(table);
 }
 
 function buildJsonRow(headers, row){
@@ -79,12 +83,6 @@ function json2jacoda(jsonData) {
     return jacodaArray;
 }
 
-jacodaData = eval(document.getElementById("jacoda_data").value);
-console.log("JACODA data:");
-console.log(jacodaData);
-console.log("JACODA data converted to JSON:");
-console.log(jacoda2json(jacodaData));
-
 function updateJson(jsonData) {
     "use strict";
     var row;
@@ -106,12 +104,55 @@ function updateJson(jsonData) {
         }
 	table.appendChild(tr);
     }
-    document.getElementById("json").appendChild(table);
+    getEl("json").appendChild(table);
 }
 
+function renderingTest(iterations) {
 
-jsonData = eval(document.getElementById("json_data").value);
-console.log("JSON data:");
-console.log(jsonData);
-console.log("JSON data converted to JACODA:");
-console.log(json2jacoda(jsonData));
+    var starttime, stoptime;
+    var jacodaTotalTime = 0;
+    var jacodaMeanTime;
+    var jsonTotalTime = 0;
+    var jsonMeanTime;
+
+    // test JACODA
+    for (var i=0; i<iterations; i++) {
+	getEl("jacoda").innerHTML = "";
+        startTime = Date.now();
+	updateJacoda(moviesJacoda);
+	stopTime = Date.now();
+	jacodaTotalTime += (stopTime - startTime);
+    }
+
+    getEl("jacoda_test_count").innerHTML = iterations;
+    getEl("jacoda_total_time").innerHTML = jacodaTotalTime;
+    getEl("jacoda_mean_time").innerHTML = jacodaTotalTime/iterations;
+    
+    // test JSON
+    for (var i=0; i<iterations; i++) {
+	getEl("json").innerHTML = "";
+        startTime = Date.now();
+	updateJson(moviesJson);
+	stopTime = Date.now();
+	jsonTotalTime += (stopTime - startTime);
+    }
+    getEl("json_test_count").innerHTML = iterations;
+    getEl("json_total_time").innerHTML = jsonTotalTime;
+    getEl("json_mean_time").innerHTML = jsonTotalTime/iterations;
+}
+
+if (document.getElementById("jacoda_data")) {
+    jacodaData = eval(document.getElementById("jacoda_data").value);
+    console.log("JACODA data:");
+    console.log(jacodaData);
+    console.log("JACODA data converted to JSON:");
+    console.log(jacoda2json(jacodaData));
+}
+
+if (document.getElementById("json_data")) {
+    jsonData = eval(document.getElementById("json_data").value);
+    console.log("JSON data:");
+    console.log(jsonData);
+    console.log("JSON data converted to JACODA:");
+    console.log(json2jacoda(jsonData));
+}

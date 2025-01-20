@@ -2,27 +2,7 @@
 <html>
     <head>
         <title>JACODA - JAvascript COmpact DAta</title>
-        <style type="text/css">
-            #jacoda, #json {
-                background-color: #ffffee;
-                border: .4em solid #eeeedd;
-                height: 10em;
-                width: 30em;
-            }
-            label {
-                display: block;
-            }
-            table {
-                border: .25em solid #eeeedd;
-                margin: 1em;
-            }
-            th, td {
-                margin: .25em
-            }
-            p {
-                width: 40em;
-            }
-        </style>
+	<link rel="stylesheet" href="jacoda.css">
         <link rel="preload" as="fetch" href="https://octothorp.es/?uri=https://osric.com/jacoda/">
         <link rel="octo:octothorpes" href="javascript">
         <link rel="octo:octothorpes" href="json">
@@ -73,12 +53,13 @@
         <p>Now look at your brower's console. Easily converted to JSON if needed. Exactly the same.<p>
 
         <h2>Benefits</h2>
-        <p>Reduced disk space, bandwidth, license usage. All things you pay for. Maybe other benefits too?</p>
+        <p>In theory? Reduced disk space, bandwidth, license usage. All things you pay for. Maybe other benefits too?</p>
         <p>Even comparing my small contrived example, the JSON data, with unnecessary whitespace removed, is over twice the size of the JACODA data (header row excluded). That may not make a lot of difference for bandwidth (gzip compression) or disk space (various compression methods), but it will make a big difference for Splunk license usage, for one specific example.</p>
+	<p>In practice? The differences probably aren't noticeable enough to care. See <a href="test.html">JACODA versus JSON tests</a>. And we don't need YAJN - Yet Another Javascript Notation.</p>
 
         <h2>Are you serious?</h2>
-        <p>I'm honestly not sure.</p>
-    <p>Inspired by this conversation on Mastodon: <a href="https://infosec.exchange/@cherdt/113725355821786293">What if most JSON data is really just a CSV?</a></p>
+        <p>It was worth exploring, even as a gag.</p>
+        <p>Inspired by this conversation on Mastodon: <a href="https://infosec.exchange/@cherdt/113725355821786293">What if most JSON data is really just a CSV?</a></p>
 
         <script src="jacoda.js"></script>
     

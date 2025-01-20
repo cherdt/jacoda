@@ -1,0 +1,20 @@
+#jacoda, #json {
+    background-color: #ffffee;
+    border: .4em solid #eeeedd;
+    height: 10em;
+    overflow: scroll;
+    width: 30em;
+}
+label {
+    display: block;
+}
+table {
+    border: .25em solid #eeeedd;
+    margin: 1em;
+}
+th, td {
+    margin: .25em
+}
+p {
+    width: 40em;
+}
